@@ -11,19 +11,20 @@ pipeline {
             }
         }
 
-        stage('Yarn Install') {
+        stage('Run shell script') {
             steps {
-                echo 'Yarn Install'
+                echo 'Run shell script'
+                sh test.sh
                 echo '******************************'
             }
         }
 
-        stage('Yarn Build') {
-            steps {
-                echo 'Yarn Build'
-                echo '******************************'
-            }
-        }
+        // stage('Yarn Build') {
+        //     steps {
+        //         echo 'Yarn Build'
+        //         echo '******************************'
+        //     }
+        // }
         
         stage('Deploy') {
             steps{
