@@ -1,33 +1,37 @@
 pipeline {
-    agent any
+    
+    agent any  
 
     stages {
-        stage ('Compile Stage') {
 
+        stage('Init'){
             steps {
-                withMaven(maven : 'maven_3_6_3') {
-                    sh 'mvn clean compile'
-                }
+                echo 'Init'
+                echo '******************************'
             }
         }
 
-        stage ('Testing Stage') {
-
+        stage('Yarn Install') {
             steps {
-                withMaven(maven : 'maven_3_6_3') {
-                    sh 'mvn test'
-                }
+                echo 'Yarn Install'
+                echo '******************************'
             }
         }
 
-
-        stage ('Deployment Stage') {
+        stage('Yarn Build') {
             steps {
-                withMaven(maven : 'maven_3_6_3') {
-                    sh 'mvn deploy'
-                }
+                echo 'Yarn Build'
+                echo '******************************'
+            }
+        }
+
+        ...
+
+        stage('Deploy') {
+            steps{
+                echo 'Deploy'
+                echo '******************************'
             }
         }
     }
 }
-© 2021 GitHub, Inc.
