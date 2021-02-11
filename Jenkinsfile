@@ -14,7 +14,7 @@ pipeline {
         stage('Run shell script') {
             steps {
                 echo 'Run shell script'
-                sh 'pwd'
+                sh './test.sh'
                 echo '******************************'
             }
         }
