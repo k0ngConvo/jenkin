@@ -14,7 +14,8 @@ pipeline {
         stage('Run shell script') {
             steps {
                 echo 'Run shell script'
-                sh 'sh ./test.sh'
+                sh '/c/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/zxcc@script
+/test.sh'
                 echo '******************************'
             }
         }
