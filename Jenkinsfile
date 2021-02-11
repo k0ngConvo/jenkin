@@ -14,7 +14,7 @@ pipeline {
         stage('Run shell script') {
             steps {
                 echo 'Run shell script'
-                sh /jenkin/test.sh
+                /jenkin/test.sh
                 echo '******************************'
             }
         }
