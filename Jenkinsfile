@@ -14,7 +14,7 @@ pipeline {
         stage('Run shell script') {
             steps {
                 echo 'Run shell script'
-                sh 'chmod 744 test.sh'
+                sh 'sh ./jenkin/test.sh'
                 echo '******************************'
             }
         }
