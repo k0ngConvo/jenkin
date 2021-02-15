@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'Run shell script'
                 sh 'pwd'
-                // sh '/c/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/zxcc@script/test.sh'
+                sh 'sh test.sh'
                 echo '******************************'
             }
         }
