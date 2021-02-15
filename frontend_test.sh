@@ -1,0 +1,1 @@
+echo "run some for frontend_build"

@@ -12,7 +12,8 @@ pipeline {
             steps {
                 echo 'Init'
                 echo "build number : ${env.BUILD_NUMBER}"
-                echo "registry url : ${env.TEST_URL}"
+                echo "read more info : ${env.TEST_URL}"
+                // sh 'pwd'
                 echo '******************************'
             }
         }
@@ -20,13 +21,15 @@ pipeline {
         stage('Build Code Frontend') {
             steps {
                 echo 'Build Code Frontend'
+                sh 'sh frontend_build.sh'
                 echo '******************************'
             }
         }
 
-        stage('Test Code Backend') {
+        stage('Test Code Frontend') {
             steps {
                 echo 'Test Code Backend'
+                sh 'sh frontend_test.sh'
                 echo '******************************'
             }
         }
@@ -34,32 +37,18 @@ pipeline {
         stage('Build Code Backend') {
             steps {
                 echo 'Build Code Backend'
+                sh 'sh backend_build.sh'
                 echo '******************************'
             }
         }
 
-        stage('Test Code Frontend') {
+        stage('Test Code Backend') {
             steps {
                 echo 'Test Code Frontend'
+                sh 'sh backend_test.sh'
                 echo '******************************'
             }
         }
-
-        stage('Run shell script') {
-            steps {
-                echo 'Run shell script'
-                sh 'pwd'
-                sh 'sh test.sh'
-                echo '******************************'
-            }
-        }
-
-        // stage('Yarn Build') {
-        //     steps {
-        //         echo 'Yarn Build'
-        //         echo '******************************'
-        //     }
-        // }
         
         stage('Deploy') {
             steps{
