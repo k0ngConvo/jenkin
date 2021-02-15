@@ -1,13 +1,4 @@
-//Manage Jenkins -> Configure System -> Global Properties -> Environment Variables -> Add
 
-// การ Build Code Frontend (Angular, VueJS, React, ect)
-// การ Test Code Frontend
-// การ Build Code Backend
-// การ Test Code Backend
-// การ Build Docker Image
-// การ Push Docker Image ไปยัง Registry
-// การ ออก Report
-// การ Deploy
 
 pipeline {
     
