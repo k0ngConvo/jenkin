@@ -2,6 +2,10 @@ pipeline {
     
     agent any  
 
+    environment {
+        TEST_URL = 'https://www.jenkins.io/'
+    }
+
     stages {
 
         stage('Init'){
