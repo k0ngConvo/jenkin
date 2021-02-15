@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Init'
                 echo "build number : ${env.BUILD_NUMBER}"
-                // echo "registry url : ${env.TEST_URL}"
+                echo "registry url : ${env.TEST_URL}"
                 echo '******************************'
             }
         }
