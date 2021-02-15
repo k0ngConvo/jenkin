@@ -17,6 +17,34 @@ pipeline {
             }
         }
 
+        stage('Build Code Frontend') {
+            steps {
+                echo 'Build Code Frontend'
+                echo '******************************'
+            }
+        }
+
+        stage('Test Code Backend') {
+            steps {
+                echo 'Test Code Backend'
+                echo '******************************'
+            }
+        }
+
+        stage('Build Code Backend') {
+            steps {
+                echo 'Build Code Backend'
+                echo '******************************'
+            }
+        }
+
+        stage('Test Code Frontend') {
+            steps {
+                echo 'Test Code Frontend'
+                echo '******************************'
+            }
+        }
+
         stage('Run shell script') {
             steps {
                 echo 'Run shell script'
