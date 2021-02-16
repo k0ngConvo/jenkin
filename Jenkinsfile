@@ -18,43 +18,19 @@ pipeline {
             }
         }
 
-        stage('Build Code Frontend') {
-            steps {
-                echo 'Build Code Frontend'
-                sh 'sh frontend_build.sh'
-                echo '******************************'
-            }
-        }
+    stage('run-parallel-branches') {
+        steps {
+            parallel(
+                a: {
+                    echo "This is branch a"
+                },
+                b: {
+                    echo "This is branch b"
+                }
+            )
+    }
+}
 
-        stage('Test Code Frontend') {
-            steps {
-                echo 'Test Code Backend'
-                sh 'sh frontend_test.sh'
-                echo '******************************'
-            }
-        }
 
-        stage('Build Code Backend') {
-            steps {
-                echo 'Build Code Backend'
-                sh 'sh backend_build.sh'
-                echo '******************************'
-            }
-        }
-
-        stage('Test Code Backend') {
-            steps {
-                echo 'Test Code Frontend'
-                sh 'sh backend_test.sh'
-                echo '******************************'
-            }
-        }
-        
-        stage('Deploy') {
-            steps{
-                echo 'Deploy'
-                echo '******************************'
-            }
-        }
     }
 }
