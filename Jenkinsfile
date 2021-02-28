@@ -10,29 +10,29 @@ pipeline {
             }
         }
         stage('Parallel Stage') {
-            // when {
-            //     branch 'master'
-            // }
+            when {
+                branch 'master'
+            }
             parallel {
-                stage('master') {
+                stage('Branch A') {
                     agent {
-                        label "master"
+                        label "for-branch-a"
                     }
                     steps {
-                        echo "master"
+                        echo "On Branch A"
                     }
                 }
-                stage('kong-windows') {
+                stage('Branch B') {
                     agent {
-                        label "kong-windows"
+                        label "for-branch-b"
                     }
                     steps {
-                        echo "kong-windows"
+                        echo "On Branch B"
                     }
                 }
-                stage('kong-windows') {
+                stage('Branch C') {
                     agent {
-                        label "kong-windows"
+                        label "for-branch-c"
                     }
                     stages {
                         stage('Nested 1') {
