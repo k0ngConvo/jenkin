@@ -1,52 +1,52 @@
 pipeline {
-    // agent any
-    agent {
-        node { label 'kong-windows' }
-    }
+    agent any
+    // agent {
+    //     node { label 'kong-windows' }
+    // }
     // options {
     //     parallelsAlwaysFailFast()
     // }
-    stages {
-        stage('Non-Parallel Stage') {
-            steps {
-                echo 'This stage will be executed first.'
-            }
-        }
+    // stages {
+    //     stage('Non-Parallel Stage') {
+    //         steps {
+    //             echo 'This stage will be executed first.'
+    //         }
+    //     }
         stage('Parallel Stage') {
             // when {
             //     branch 'main'
             // }
             parallel {
                 
-                stage('Branch A') {
-                    // agent {
-                    //     label "for-branch-a"
-                    // }
+                stage('master 1') {
+                    agent {
+                        node { label 'master' }
+                    }
                     steps {
-                        echo "On Branch A"
+                        echo "On master node"
                     }
                 }
-                stage('Branch B') {
-                    // agent {
-                    //     label "for-branch-b"
-                    // }
+                stage('master 2') {
+                    agent {
+                        node { label 'master' }
+                    }
                     steps {
-                        echo "On Branch B"
+                        echo "On master node"
                     }
                 }
-                stage('Branch C') {
-                    // agent {
-                    //     label "for-branch-c"
-                    // }
+                stage('local') {
+                    agent {
+                        node { label 'kong-windows' }
+                    }
                     stages {
                         stage('Nested 1') {
                             steps {
-                                echo "In stage Nested 1 within Branch C"
+                                echo "In stage Nested 1 on local"
                             }
                         }
                         stage('Nested 2') {
                             steps {
-                                echo "In stage Nested 2 within Branch C"
+                                echo "In stage Nested 2 on local"
                             }
                         }
                     }
