@@ -1,41 +1,36 @@
 pipeline {
-    // agent any
-    agent {
-        node { label 'kong-windows' }
+    
+    agent any  
+
+    environment {
+        TEST_URL = 'https://www.jenkins.io/'
     }
-    options {
-        parallelsAlwaysFailFast()
-    }
+
     stages {
-        stage('Non-Parallel Stage') {
+
+        stage('Init'){
             steps {
-                echo 'This stage will be executed first.'
+                echo 'Init'
+                echo "build number : ${env.BUILD_NUMBER}"
+                echo "read more info : ${env.TEST_URL}"
+                // sh 'pwd'
+                echo '******************************'
             }
         }
-        stage('Parallel Stage') {
-            // when {
-            //     branch 'main'
-            // }
-            parallel {
-                
-                stage('Branch A') {
-                    // agent {
-                    //     node { label 'master' }
-                    // }
-                    steps {
-                        echo "On Branch A"
-                        sh 'sh notfound.sh'
-                    }
+
+    stage('run-parallel-branches') {
+        steps {
+            parallel(
+                main: {
+                    echo "This is branch main"
+                },
+                test: {
+                    echo "This is branch test"
                 }
-                stage('Branch B') {
-                    // agent {
-                    //     node { label 'master' }
-                    // }
-                    steps {
-                        echo "On Branch B"
-                    }
-                }
-            }
-        }
+            )
+    }
+}
+
+
     }
 }
