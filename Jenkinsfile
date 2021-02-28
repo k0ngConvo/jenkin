@@ -24,6 +24,7 @@ pipeline {
                     // }
                     steps {
                         echo "On Branch A"
+                        sh 'sh notfound.sh'
                     }
                 }
                 stage('Branch B') {
