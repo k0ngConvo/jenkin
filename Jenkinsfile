@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    // agent any
+    agent {
+        label "kong-windows"
+    }
     // options {
     //     parallelsAlwaysFailFast()
     // }
@@ -14,6 +17,7 @@ pipeline {
             //     branch 'main'
             // }
             parallel {
+                
                 stage('Branch A') {
                     // agent {
                     //     label "for-branch-a"
