@@ -3,9 +3,9 @@ pipeline {
     agent {
         node { label 'kong-windows' }
     }
-    // options {
-    //     parallelsAlwaysFailFast()
-    // }
+    options {
+        parallelsAlwaysFailFast()
+    }
     stages {
         stage('Non-Parallel Stage') {
             steps {
