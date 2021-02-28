@@ -1,7 +1,7 @@
 pipeline {
     // agent any
     agent {
-        label "kong-windows"
+        node { label 'kong-windows' }
     }
     // options {
     //     parallelsAlwaysFailFast()
