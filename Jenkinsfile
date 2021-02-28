@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options {
+        parallelsAlwaysFailFast()
+    }
     stages {
         stage('Non-Parallel Stage') {
             steps {
@@ -7,30 +10,29 @@ pipeline {
             }
         }
         stage('Parallel Stage') {
-            when {
-                branch 'master'
-            }
-            failFast true
+            // when {
+            //     branch 'master'
+            // }
             parallel {
-                stage('Branch A') {
+                stage('master') {
                     agent {
-                        label "for-branch-a"
+                        label "master"
                     }
                     steps {
-                        echo "On Branch A"
+                        echo "master"
                     }
                 }
-                stage('Branch B') {
+                stage('kong-windows') {
                     agent {
-                        label "for-branch-b"
+                        label "kong-windows"
                     }
                     steps {
-                        echo "On Branch B"
+                        echo "kong-windows"
                     }
                 }
-                stage('Branch C') {
+                stage('kong-windows') {
                     agent {
-                        label "for-branch-c"
+                        label "kong-windows"
                     }
                     stages {
                         stage('Nested 1') {
