@@ -1,6 +1,10 @@
 pipeline {
     
-    agent any  
+    agent {
+        node {
+            label "master"
+        }
+    }
 
     environment {
         TEST_URL = 'https://www.jenkins.io/'
