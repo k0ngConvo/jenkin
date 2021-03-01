@@ -1,40 +1,55 @@
 pipeline {
-    
     agent {
-        node {
-            label "master"
-        }
+        node { label "kong-windows" }
     }
-
-    environment {
-        TEST_URL = 'https://www.jenkins.io/'
+    options {
+        parallelsAlwaysFailFast()
     }
-
     stages {
-
-        stage('Init'){
+        stage('Non-Parallel Stage') {
             steps {
-                echo 'Init'
-                echo "build number : ${env.BUILD_NUMBER}"
-                echo "read more info : ${env.TEST_URL}"
-                // sh 'pwd'
-                echo '******************************'
+                echo 'This stage will be executed first.'
             }
         }
-
-    stage('run-parallel-branches') {
-        steps {
-            parallel(
-                main: {
-                    echo "This is branch main"
-                },
-                test: {
-                    echo "This is branch test"
+        stage('Parallel Stage') {
+            // when {
+            //     branch 'master'
+            // }
+            parallel {
+                stage('master') {
+                    // agent {
+                    //     label "master"
+                    // }
+                    steps {
+                        echo "master"
+                    }
                 }
-            )
-    }
-}
-
-
+                stage('kong-windows') {
+                    // agent {
+                    //     label "kong-windows"
+                    // }
+                    steps {
+                        echo "kong-windows"
+                    }
+                }
+                // stage('kong-windows') {
+                //     agent {
+                //         label "kong-windows"
+                //     }
+                //     stages {
+                //         stage('Nested 1') {
+                //             steps {
+                //                 echo "In stage Nested 1 within Branch C"
+                //             }
+                //         }
+                //         stage('Nested 2') {
+                //             steps {
+                //                 echo "In stage Nested 2 within Branch C"
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        }
     }
 }
