@@ -18,14 +18,14 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
-                stage('Branch A') {
-                    // agent {
-                    //     label "master"
-                    // }
-                    steps {
-                        error "failure test. It’s work"
-                    }
-                }
+                // stage('Branch A') {
+                //     // agent {
+                //     //     label "master"
+                //     // }
+                //     steps {
+                //         error "failure test. It’s work"
+                //     }
+                // }
                 stage('Branch B') {
                     // agent {
                     //     label "kong-windows"
