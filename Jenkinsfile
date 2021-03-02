@@ -15,14 +15,22 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
-                    node("master"){
-                        stage('Branch A') {
-                    steps {
-                        echo "echo form branch B"
-                        // error "failure test. It’s work"
-                    }
-                }
-                    }
+                node("master") {
+    timeout(unit: 'SECONDS', time: 5) {
+        stage("One"){
+            sleep 10
+            echo 'hello'
+        }
+    }
+}
+node("master") {
+    timeout(unit: 'SECONDS', time: 5) {
+        stage("One"){
+            sleep 10
+            echo 'hello'
+        }
+    }
+}
                     
                 // agent {
                 //     node { label "kong-windows" }
