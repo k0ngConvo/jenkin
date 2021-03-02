@@ -1,38 +1,40 @@
 pipeline {
-    
-    agent {
-        node { label "kong-windows" }
-    }
-
-    stages {
-
-        stage('Init'){
-            steps {
-                echo 'Init'
-                echo '******************************'
-            }
-        }
-
-        stage('Run shell script') {
-            steps {
-                echo 'Run shell script'
-                sh 'sh ./jenkin/test.sh'
-                echo '******************************'
-            }
-        }
-
-        // stage('Yarn Build') {
-        //     steps {
-        //         echo 'Yarn Build'
-        //         echo '******************************'
-        //     }
-        // }
-        
-        stage('Deploy') {
-            steps{
-                echo 'Deploy'
-                echo '******************************'
-            }
-        }
-    }
+   agent { label 'kong-windows' }
+   stages {
+       stage('before') {
+           steps {
+               println("before")
+           }
+       }
+       stage('para') {
+           parallel {
+               stage('apple') {
+                   steps {
+                       println("apple 1")
+                       sleep(20 * Math.random())
+                       println("apple 2")
+                   }
+               }
+               stage('banana') {
+                   steps {
+                       println("banana 1")
+                       sleep(20 * Math.random())
+                       println("banana 2")
+                   }
+               }
+               stage('peach') {
+                   steps {
+                       println("peach 1")
+                       sleep(20 * Math.random())
+                       println("peach 2")
+                   }
+               }
+           }
+       }
+       stage('after') {
+           steps {
+               println("after")
+           }
+       }
+   }
 }
