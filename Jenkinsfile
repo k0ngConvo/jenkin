@@ -1,6 +1,8 @@
 pipeline {
     
-    agent any  
+    agent {
+        node { label "kong-windows" }
+    }
 
     stages {
 
