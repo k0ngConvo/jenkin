@@ -10,12 +10,15 @@ pipeline {
            parallel {
                stage('apple') {
                    steps {
-                        try {
+                       script {
+                           try {
                             sh 'sh notfound.sh'
                         } catch (e) {
                             echo('detected failure: Successful stage')
                         throw(e)
-                        }
+
+                       }
+                        
                    }
                }
                stage('banana') {
