@@ -13,7 +13,7 @@ pipeline {
                 echo 'This stage will be executed first.'
             }
         }
-        stage('Parallel Stage') {
+        // stage('Parallel Stage') {
             // when {
             //     branch 'master'
             // }
@@ -35,24 +35,21 @@ pipeline {
                         sh 'sh backend_build.sh'
                     }
                 }
-                // stage('kong-windows') {
-                //     agent {
-                //         label "kong-windows"
-                //     }
-                //     stages {
-                //         stage('Nested 1') {
-                //             steps {
-                //                 echo "In stage Nested 1 within Branch C"
-                //             }
-                //         }
-                //         stage('Nested 2') {
-                //             steps {
-                //                 echo "In stage Nested 2 within Branch C"
-                //             }
-                //         }
-                //     }
-                // }
+                stage('Branch C') {
+                    stages {
+                        stage('Nested 1') {
+                            steps {
+                                echo "In stage Nested 1 within Branch C"
+                            }
+                        }
+                        stage('Nested 2') {
+                            steps {
+                                echo "In stage Nested 2 within Branch C"
+                            }
+                        }
+                    }
+                }
             }
-        }
+        // }
     }
 }
