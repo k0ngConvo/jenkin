@@ -10,9 +10,12 @@ pipeline {
            parallel {
                stage('apple') {
                    steps {
-                       println("apple 1")
-                       sleep(20 * Math.random())
-                       println("apple 2")
+                        try {
+                            sh 'sh notfound.sh'
+                        } catch (e) {
+                            echo('detected failure: Successful stage')
+                        throw(e)
+                        }
                    }
                }
                stage('banana') {
