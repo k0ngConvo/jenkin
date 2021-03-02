@@ -17,10 +17,10 @@ pipeline {
             parallel {
                     
                 stage('Branch A') {
-                    node { label "master" }
-                    steps {
+                    node { label "master" 
                         echo "echo form branch B"
                         // error "failure test. It’s work"
+                    
                     }
                 }
                 stage('Branch B') {
