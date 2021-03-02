@@ -4,6 +4,7 @@ pipeline {
     }
     options {
         parallelsAlwaysFailFast()
+        timeout(time: 5, unit: 'MINUTES')
     }
     stages {
         stage('Non-Parallel Stage') {
@@ -16,20 +17,21 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
-                stage('master') {
+                stage('Branch A') {
                     // agent {
                     //     label "master"
                     // }
                     steps {
-                        echo "master"
+                        error "failure test. It’s work"
                     }
                 }
-                stage('kong-windows') {
+                stage('Branch B') {
                     // agent {
                     //     label "kong-windows"
                     // }
                     steps {
-                        echo "kong-windows"
+                        echo "echo form branch B"
+                        sh 'sh backend_build.sh'
                     }
                 }
                 // stage('kong-windows') {
