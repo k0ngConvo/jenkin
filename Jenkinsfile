@@ -23,6 +23,7 @@ pipeline {
                     //     label "master"
                     // }
                     steps {
+                        echo 'step fail'
                         error "failure test. It’s work"
                     }
                 }
