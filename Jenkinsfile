@@ -13,7 +13,7 @@ pipeline {
                 echo 'This stage will be executed first.'
             }
         }
-        // stage('Parallel Stage') {
+        stage('Parallel Stage') {
             // when {
             //     branch 'master'
             // }
@@ -53,6 +53,6 @@ pipeline {
                 //     }
                 // }
             }
-        // }
+        }
     }
 }
