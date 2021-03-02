@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-        node { label "kong-windows" }
-    }
+    // agent {
+    //     node { label "kong-windows" }
+    // }
+    agent any
     options {
         parallelsAlwaysFailFast()
         timeout(time: 5, unit: 'MINUTES')
@@ -17,10 +18,11 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
+                node label "master"
                 stage('Branch A') {
-                    agent {
-                        label "master"
-                    }
+                    // agent {
+                    //     label "master"
+                    // }
                     steps {
                         error "failure test. It’s work"
                     }
