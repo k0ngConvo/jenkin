@@ -1,47 +1,57 @@
 pipeline {
-   agent { label 'master' }
-   stages {
-       stage('before') {
-           steps {
-               println("before")
-           }
-       }
-       stage('para') {
-           parallel {
-               stage('apple') {
-                   steps {
-                       script {
-                           try {
-                            sh 'sh notfound.sh'
-                        } catch (e) {
-                            echo('detected failure: Successful stage')
-                        throw(e)
+    agent any
+    options {
+        parallelsAlwaysFailFast()
+        timeout(time: 5, unit: 'MINUTES')
+    }
+    stages {
+        stage('Non-Parallel Stage') {
+            steps {
+                echo 'This stage will be executed first.'
+            }
+        }
+        stage('Parallel Stage') {
+            // when {
+            //     branch 'master'
+            // }
+            parallel {
+                agent {
+                    node { label "master" }
+                    stage('Branch A') {
+                    steps {
+                        echo "echo form branch B"
+                        // error "failure test. It’s work"
+                    }
+                }
+                }
+                agent {
+                    node { label "kong-windows" }
+                    stage('Branch B') {
+                    steps {
+                        echo "echo form branch B"
+                        sh 'sh backend_build.sh'
+                    }
+                }
+                }
 
-                       }
-                        
-                   }
-               }
-               stage('banana') {
-                   steps {
-                       println("banana 1")
-                       sleep(20 * Math.random())
-                       println("banana 2")
-                   }
-               }
-               stage('peach') {
-                   steps {
-                       println("peach 1")
-                       sleep(20 * Math.random())
-                       println("peach 2")
-                   }
-               }
-           }
-       }
-       stage('after') {
-           steps {
-               println("after")
-           }
-       }
-   }
-}
+                // stage('kong-windows') {
+                //     agent {
+                //         label "kong-windows"
+                //     }
+                //     stages {
+                //         stage('Nested 1') {
+                //             steps {
+                //                 echo "In stage Nested 1 within Branch C"
+                //             }
+                //         }
+                //         stage('Nested 2') {
+                //             steps {
+                //                 echo "In stage Nested 2 within Branch C"
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        }
+    }
 }
