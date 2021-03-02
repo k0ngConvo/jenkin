@@ -18,7 +18,6 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
-                node label "master"
                 stage('Branch A') {
                     // agent {
                     //     label "master"
