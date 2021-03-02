@@ -1,18 +1,56 @@
 pipeline {
-    agent none 
+    agent {
+        node { label "kong-windows" }
+    }
+    options {
+        parallelsAlwaysFailFast()
+        timeout(time: 5, unit: 'MINUTES')
+    }
     stages {
-        stage('Example Build') {
-            agent { node {label: 'master'} } 
+        stage('Non-Parallel Stage') {
             steps {
-                echo 'Hello, Maven'
-                // sh 'mvn --version'
+                echo 'This stage will be executed first.'
             }
         }
-        stage('Example Test') {
-            agent { node {label: 'master'} } 
-            steps {
-                echo 'Hello, JDK'
-                // sh 'java -version'
+        stage('Parallel Stage') {
+            // when {
+            //     branch 'master'
+            // }
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        label "master"
+                    }
+                    steps {
+                        error "failure test. It’s work"
+                    }
+                }
+                stage('Branch B') {
+                    // agent {
+                    //     label "kong-windows"
+                    // }
+                    steps {
+                        echo "echo form branch B"
+                        sh 'sh backend_build.sh'
+                    }
+                }
+                // stage('kong-windows') {
+                //     agent {
+                //         label "kong-windows"
+                //     }
+                //     stages {
+                //         stage('Nested 1') {
+                //             steps {
+                //                 echo "In stage Nested 1 within Branch C"
+                //             }
+                //         }
+                //         stage('Nested 2') {
+                //             steps {
+                //                 echo "In stage Nested 2 within Branch C"
+                //             }
+                //         }
+                //     }
+                // }
             }
         }
     }
