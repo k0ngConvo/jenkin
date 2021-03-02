@@ -15,24 +15,24 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
-                agent {
-                    node { label "master" }
-                    stage('Branch A') {
+                    node("master"){
+                        stage('Branch A') {
                     steps {
                         echo "echo form branch B"
                         // error "failure test. It’s work"
                     }
                 }
-                }
-                agent {
-                    node { label "kong-windows" }
-                    stage('Branch B') {
-                    steps {
-                        echo "echo form branch B"
-                        sh 'sh backend_build.sh'
                     }
-                }
-                }
+                    
+                // agent {
+                //     node { label "kong-windows" }
+                //     stage('Branch B') {
+                //     steps {
+                //         echo "echo form branch B"
+                //         sh 'sh backend_build.sh'
+                //     }
+                // }
+                // }
 
                 // stage('kong-windows') {
                 //     agent {
