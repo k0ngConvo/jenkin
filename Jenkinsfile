@@ -53,12 +53,12 @@ pipeline {
                         sh 'sh backend_build.sh'
                     }
                 }
-                                stage('Branch B') {
+                                stage('Branch E') {
                     // agent {
                     //     label "kong-windows"
                     // }
                     steps {
-                        echo "echo form branch B"
+                        echo "echo form branch E"
                         sh 'sh backend_build.sh'
                     }
                 }
