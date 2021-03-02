@@ -1,8 +1,7 @@
 pipeline {
-    // agent {
-    //     node { label "kong-windows" }
-    // }
-    agent any
+    agent {
+        node { label "master" }
+    }
     options {
         parallelsAlwaysFailFast()
         timeout(time: 5, unit: 'MINUTES')
