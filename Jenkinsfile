@@ -3,7 +3,7 @@ pipeline {
         node { label "kong-windows" }
     }
     options {
-        parallelsAlwaysFailFast()
+        // parallelsAlwaysFailFast()
         timeout(time: 5, unit: 'MINUTES')
     }
     stages {
