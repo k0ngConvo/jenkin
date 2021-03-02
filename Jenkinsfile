@@ -15,33 +15,23 @@ pipeline {
             //     branch 'master'
             // }
             parallel {
-                node("master") {
-    timeout(unit: 'SECONDS', time: 5) {
-        stage("One"){
-            sleep 10
-            echo 'hello'
-        }
-    }
-}
-node("master") {
-    timeout(unit: 'SECONDS', time: 5) {
-        stage("One"){
-            sleep 10
-            echo 'hello'
-        }
-    }
-}
                     
-                // agent {
-                //     node { label "kong-windows" }
-                //     stage('Branch B') {
-                //     steps {
-                //         echo "echo form branch B"
-                //         sh 'sh backend_build.sh'
-                //     }
-                // }
-                // }
-
+                stage('Branch A') {
+                    node { label "master" }
+                    steps {
+                        echo "echo form branch B"
+                        // error "failure test. It’s work"
+                    }
+                }
+                stage('Branch B') {
+                    // agent {
+                    //     label "kong-windows"
+                    // }
+                    steps {
+                        echo "echo form branch B"
+                        sh 'sh backend_build.sh'
+                    }
+                }
                 // stage('kong-windows') {
                 //     agent {
                 //         label "kong-windows"
