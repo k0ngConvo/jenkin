@@ -2,6 +2,7 @@ pipeline {
     agent {
         node { label 'master' }
     }
+
     options {
         parallelsAlwaysFailFast()
         timeout(time: 5, unit: 'MINUTES')
@@ -23,6 +24,10 @@ pipeline {
                     // }
                     steps {
                         echo 'step fail'
+                        // error 'failure test. It’s work'
+                    }
+                    steps {
+                        // echo 'step fail'
                         error 'failure test. It’s work'
                     }
                 }
