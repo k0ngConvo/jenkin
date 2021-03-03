@@ -24,10 +24,6 @@ pipeline {
                     // }
                     steps {
                         echo 'step fail'
-                        // error 'failure test. It’s work'
-                    }
-                    steps {
-                        // echo 'step fail'
                         error 'failure test. It’s work'
                     }
                 }
