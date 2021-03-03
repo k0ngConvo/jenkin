@@ -14,52 +14,31 @@ pipeline {
             }
         }
         stage('Parallel Stage') {
-            // when {
-            //     branch 'master'
-            // }
             parallel {
                 stage('Branch A') {
-                    // agent {
-                    //     label "master"
-                    // }
                     steps {
-                        echo 'step fail'
+                        sh 'sh test.sh A'
                         // error 'failure test. It’s work'
                     }
                 }
                 stage('Branch B') {
-                    // agent {
-                    //     label "kong-windows"
-                    // }
                     steps {
                         sh 'sh test.sh B'
                     }
                 }
                 stage('Branch C') {
-                    // agent {
-                    //     label "kong-windows"
-                    // }
                     steps {
-                        echo 'echo form branch C'
-                        sh 'sh backend_build.sh'
+                        sh 'sh test.sh C'
                     }
                 }
                 stage('Branch D') {
-                    // agent {
-                    //     label "kong-windows"
-                    // }
                     steps {
-                        echo 'echo form branch D'
-                        sh 'sh backend_build.sh'
+                        sh 'sh test.sh D'
                     }
                 }
                 stage('Branch E') {
-                    // agent {
-                    //     label "kong-windows"
-                    // }
                     steps {
-                        echo 'echo form branch E'
-                        sh 'sh backend_build.sh'
+                        sh 'sh test.sh E'
                     }
                 }
                 stage('kong-windows') {
