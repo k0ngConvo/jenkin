@@ -24,7 +24,7 @@ pipeline {
                     // }
                     steps {
                         echo 'step fail'
-                        error 'failure test. It’s work'
+                        // error 'failure test. It’s work'
                     }
                 }
                 stage('Branch B') {
@@ -32,8 +32,7 @@ pipeline {
                     //     label "kong-windows"
                     // }
                     steps {
-                        echo 'echo form branch B'
-                        sh 'sh backend_build.sh'
+                        sh 'sh test.sh B'
                     }
                 }
                 stage('Branch C') {
