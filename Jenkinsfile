@@ -18,7 +18,7 @@ pipeline {
                 stage('Branch A') {
                     steps {
                         sh 'sh test.sh A'
-                        // error 'failure test. It’s work'
+                        error 'failure test. It’s work'
                     }
                 }
                 stage('Branch B') {
