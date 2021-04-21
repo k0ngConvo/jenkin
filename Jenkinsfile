@@ -1,14 +1,15 @@
 pipeline {
-    
-    agent any  
+    agent any
 
     environment {
         TEST_URL = 'https://www.jenkins.io/'
     }
+    options {
+        parallelsAlwaysFailFast()
+        }
 
     stages {
-
-        stage('Init'){
+        stage('Init') {
             steps {
                 echo 'Init'
                 echo "build number : ${env.BUILD_NUMBER}"
@@ -49,9 +50,9 @@ pipeline {
                 echo '******************************'
             }
         }
-        
+
         stage('Deploy') {
-            steps{
+            steps {
                 echo 'Deploy'
                 echo '******************************'
             }
