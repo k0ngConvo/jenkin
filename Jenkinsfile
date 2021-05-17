@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+        stages {
         stage('auto test') {
             parallel {
                 stage('Run iOS emu') {
@@ -25,22 +25,23 @@ pipeline {
                         dir('EkoAppiumAutomation') {
                             sh 'ls'
                             sh 'mvn clean test -P ios -Dtest=LoginTest'
-                            // script {
-                            //     if (env.BUILD_TYPE == 'class_name') {
-                            //     echo 'in if'
-                            //     sh 'sh ../run_test_by_class.sh ${Tag} ${ADB_Port}'
-                            //     //classname
-                            //     //tag
-                            //     } else {
-                            //     sh 'sh ../run_test_by_tag.sh ${Tag} ${ADB_Port}'
-                            //     }
-                            // }
+                        // script {
+                        //     if (env.BUILD_TYPE == 'class_name') {
+                        //     echo 'in if'
+                        //     sh 'sh ../run_test_by_class.sh ${Tag} ${ADB_Port}'
+                        //     //classname
+                        //     //tag
+                        //     } else {
+                        //     sh 'sh ../run_test_by_tag.sh ${Tag} ${ADB_Port}'
+                        //     }
+                        // }
                         }
                         sh 'ls'
-                        // sh 'sh clean_docker.sh ${ADB_Port}'
-                        // sh 'sudo kill \$(lsof -t -i :${Appium_Port})'
+                    // sh 'sh clean_docker.sh ${ADB_Port}'
+                    // sh 'sudo kill \$(lsof -t -i :${Appium_Port})'
                     }
                 }
             }
+        }
         }
 }
