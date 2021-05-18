@@ -1,6 +1,12 @@
 pipeline {
     agent any
         stages {
+            stage('Init') {
+                steps {
+                    sh '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" '
+                    sh 'brew --version'
+                }
+            }
         stage('auto test') {
             parallel {
                 stage('Run iOS emu') {
@@ -12,8 +18,8 @@ pipeline {
                     steps {
                         sleep(50)
                         sh 'cat ~/.bash_profile'
-                        sh 'java --version'
-                        sh 'brew --version'
+                        // sh 'java --version'
+                        // sh 'brew --version'
                         //sh 'appium --session-over --allow-insecure chromedriver_autodownload'
                         //sh 'sh appium_server.sh'
                     }
