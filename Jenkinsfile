@@ -3,7 +3,7 @@ pipeline {
         stages {
             stage('Init') {
                 steps {
-                    sh '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+                    //sh '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
                     sh 'brew --version'
                 }
             }
