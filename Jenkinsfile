@@ -11,7 +11,9 @@ pipeline {
                 stage('Run Appium Server') {
                     steps {
                         sleep(50)
-                        sh 'sh appium_server.sh 4723'
+                        sh 'appium --session-over --allow-insecure chromedriver_autodownload
+'
+                        //sh 'sh appium_server.sh 4723'
                     }
                 }
                 stage('run test') {
@@ -21,7 +23,6 @@ pipeline {
                         // sh 'adb devices'
                         // sh 'adb kill-server && sudo adb start-server'
                         sleep(60)
-                        sh 'adb devices'
                         dir('EkoAppiumAutomation') {
                             sh 'ls'
                             sh 'mvn clean test -P ios -Dtest=LoginTest'
