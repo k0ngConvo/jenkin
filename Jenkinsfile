@@ -11,8 +11,7 @@ pipeline {
                 stage('Run Appium Server') {
                     steps {
                         sleep(50)
-                        sh 'appium --session-over --allow-insecure chromedriver_autodownload
-'
+                        sh 'appium --session-over --allow-insecure chromedriver_autodownload'
                         //sh 'sh appium_server.sh 4723'
                     }
                 }
