@@ -5,7 +5,7 @@ pipeline {
             parallel {
                 stage('Run iOS emu') {
                     steps {
-                        sh 'xcrun instruments -w "iPhone 8 (14.5) [9FC7FCA8-0215-4E44-8F37-4E31C4CED369] (Simulator)"'
+                        sh 'xcrun instruments -t "SwiftUI" -w "iPhone 8 (14.5) [9FC7FCA8-0215-4E44-8F37-4E31C4CED369] (Simulator)"'
                     }
                 }
                 stage('Run Appium Server') {
