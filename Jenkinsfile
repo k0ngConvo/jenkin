@@ -13,7 +13,7 @@ pipeline {
                         sleep(50)
                         sh 'cat ~/.bash_profile'
                         sh 'java --version'
-                        sh 'npm -v'
+                        sh 'which appium'
                         //sh 'appium --session-over --allow-insecure chromedriver_autodownload'
                         //sh 'sh appium_server.sh'
                     }
