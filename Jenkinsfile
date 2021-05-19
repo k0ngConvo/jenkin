@@ -10,6 +10,7 @@ pipeline {
                     //sh 'npm --version'
                     //sh 'npm install -g appium'
                     sh 'appium --version'
+                    sh 'mvn --version'
                 }
             }
 //         stage('auto test') {
