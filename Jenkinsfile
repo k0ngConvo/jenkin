@@ -8,6 +8,8 @@ pipeline {
                     //sh '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
                     //sh 'brew --version'
                     sh 'npm --version'
+                    sh 'npm install appium'
+                    sh 'appium --version'
                 }
             }
 //         stage('auto test') {
