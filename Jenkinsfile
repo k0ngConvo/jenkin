@@ -1,7 +1,8 @@
 pipeline {
     agent any
 
-    tools {nodejs "nodejs"}
+    tools {nodejs "nodejs"
+            maven "maven"}
         stages {
             stage('Init') {
                 steps {
@@ -10,6 +11,12 @@ pipeline {
                     //sh 'npm --version'
                     //sh 'npm install -g appium'
                     sh 'appium --version'
+
+
+                    sh '''
+                                        echo "PATH = ${PATH}"
+                                        echo "M2_HOME = ${M2_HOME}"
+                                    '''
                     sh 'mvn --version'
                 }
             }
