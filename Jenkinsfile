@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+        environment {
+            PATH = '/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:PATH'
+        }
+
     tools {nodejs "nodejs"
             maven "maven"}
         stages {
