@@ -40,8 +40,8 @@ pipeline {
                         sh 'cat ~/.bash_profile'
                         // sh 'java --version'
                         // sh 'brew --version'
-                        sh 'appium --session-over --allow-insecure chromedriver_autodownload'
-                        //sh 'sh appium_server.sh'
+                        //sh 'appium --session-over --allow-insecure chromedriver_autodownload'
+                        sh 'sh appium_server.sh'
                     }
                 }
                 stage('run test') {
